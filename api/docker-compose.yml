@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  nats:
+    image: 'bitnami/nats:latest'
+    ports:
+      - 4222:4222
+      - 6222:6222
+      - 8222:8222
+
+  mongodb:
+    image: 'bitnami/mongodb:latest'
+    ports:
+      - 27017:27017
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ravxcheckout
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
